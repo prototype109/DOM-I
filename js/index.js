@@ -63,6 +63,9 @@ h1Array = anyText.map(word => {
 h1Array = h1Array.reverse();
 h1Array.forEach(textBlock => ctaTxt.prepend(textBlock));
 
+let ctaBttn = document.querySelector('.cta-text button');
+ctaBttn.textContent = siteContent["cta"]["button"];
+
 // let ctaH1 = document.querySelector('.cta-text h1');
 // ctaH1.textContent = siteContent["cta"]["h1"];
 
