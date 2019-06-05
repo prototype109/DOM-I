@@ -88,3 +88,14 @@ for(let i = 0; i < mainSection.length; i++){
 
 let midImg = document.querySelector('.middle-img');
 midImg.src = siteContent["main-content"]["middle-img-src"];
+
+let contactValues = Object.values(siteContent["contact"]);
+let contactSection = document.querySelector(".contact");
+
+for(let i = 0; i < contactSection.childElementCount; i++){
+  contactSection.children[i].textContent = contactValues[i];
+}
+
+let footer = document.querySelector('footer p');
+
+footer.textContent = siteContent["footer"]["copyright"];
