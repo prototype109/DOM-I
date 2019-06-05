@@ -46,3 +46,25 @@ let navLinks = document.querySelectorAll('a');
 for(let i = 0; i < 6; i++){
   navLinks[i].textContent = siteContent["nav"][`nav-item-${i + 1}`];
 }
+
+let ctaTxt = document.querySelector('.cta-text');
+//ctaTxt.removeChild('h1');
+
+let h1Array = [];
+let anyText = siteContent["cta"]["h1"].split(" ");
+console.log(anyText);
+h1Array = anyText.map(word => {
+  let text = document.createElement('h1');
+  text.textContent = word;
+  return text;
+});
+
+//console.log(h1Array);
+h1Array = h1Array.reverse();
+h1Array.forEach(textBlock => ctaTxt.prepend(textBlock));
+
+// let ctaH1 = document.querySelector('.cta-text h1');
+// ctaH1.textContent = siteContent["cta"]["h1"];
+
+let ctaImg = document.querySelector('#cta-img');
+ctaImg.src = siteContent["cta"]["img-src"];
