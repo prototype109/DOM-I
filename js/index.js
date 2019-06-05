@@ -72,13 +72,18 @@ ctaBttn.textContent = siteContent["cta"]["button"];
 let ctaImg = document.querySelector('#cta-img');
 ctaImg.src = siteContent["cta"]["img-src"];
 
+let main = document.querySelector('.main-content');
+
+
 let mainContentText = Object.values(siteContent["main-content"]);
 let mainSection = document.querySelectorAll('.text-content');
 
 mainContentText.splice(4, 1);
 
 for(let i = 0; i < mainSection.length; i++){
-  mainSection[i].textContent = mainContentText[i];
+  mainSection[i].children[0].textContent = mainContentText.shift();
+  mainSection[i].children[1].textContent = mainContentText.shift();
+  //can make more dynamic using for loop with children
 }
 
 let midImg = document.querySelector('.middle-img');
