@@ -71,3 +71,15 @@ ctaBttn.textContent = siteContent["cta"]["button"];
 
 let ctaImg = document.querySelector('#cta-img');
 ctaImg.src = siteContent["cta"]["img-src"];
+
+let mainContentText = Object.values(siteContent["main-content"]);
+let mainSection = document.querySelectorAll('.text-content');
+
+mainContentText.splice(4, 1);
+
+for(let i = 0; i < mainSection.length; i++){
+  mainSection[i].textContent = mainContentText[i];
+}
+
+let midImg = document.querySelector('.middle-img');
+midImg.src = siteContent["main-content"]["middle-img-src"];
