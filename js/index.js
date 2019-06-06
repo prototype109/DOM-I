@@ -54,21 +54,34 @@ navLinks.forEach((link, index) =>{
 let ctaTxt = document.querySelector('.cta-text');
 //ctaTxt.removeChild('h1');
 
-let h1Array = [];
-let anyText = siteContent["cta"]["h1"].split(" ");
+let changeHeading = function(){
+  let h1Array = [];
+  let anyText = siteContent["cta"]["h1"].split(" ");
 
-h1Array = anyText.map(word => {
-  let text = document.createElement('h1');
-  text.textContent = word;
-  return text;
-});
+  h1Array = anyText.map(word => {
+    let text = document.createElement('h1');
+    text.textContent = word;
+    return text;
+  });
 
-//console.log(h1Array);
-h1Array = h1Array.reverse();
-h1Array.forEach(textBlock => ctaTxt.prepend(textBlock));
+  //console.log(h1Array);
+  h1Array = h1Array.reverse();
+  h1Array.forEach(textBlock => ctaTxt.prepend(textBlock));
+}
+
+changeHeading();
 
 let ctaBttn = document.querySelector('.cta-text button');
 ctaBttn.textContent = siteContent["cta"]["button"];
+
+ctaBttn.addEventListener("click", function(){
+  let ctaChildrenCount = ctaTxt.childElementCount;
+  for(let i = 0; i < ctaChildrenCount - 1; i++){
+    ctaTxt.removeChild(ctaTxt.firstChild);
+  }
+  siteContent["cta"]["h1"] = "I have updated the header with a longer header";
+  changeHeading();
+});
 
 // let ctaH1 = document.querySelector('.cta-text h1');
 // ctaH1.textContent = siteContent["cta"]["h1"];
