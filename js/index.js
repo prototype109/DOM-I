@@ -39,4 +39,88 @@ const siteContent = {
 
 // Example: Update the img src for the logo
 let logo = document.getElementById("logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
+logo.setAttribute('src', siteContent["nav"]["img-src"]);
+
+let navLinks = document.querySelectorAll('a');
+
+// for(let i = 0; i < 6; i++){
+//   navLinks[i].textContent = siteContent["nav"][`nav-item-${i + 1}`];
+// }
+
+navLinks.forEach((link, index) =>{
+  link.textContent = siteContent["nav"][`nav-item-${index + 1}`];
+});
+
+let ctaTxt = document.querySelector('.cta-text');
+//ctaTxt.removeChild('h1');
+
+let changeHeading = function(){
+  let h1Array = [];
+  let anyText = siteContent["cta"]["h1"].split(" ");
+
+  h1Array = anyText.map(word => {
+    let text = document.createElement('h1');
+    text.textContent = word;
+    return text;
+  });
+
+  //console.log(h1Array);
+  h1Array = h1Array.reverse();
+  h1Array.forEach(textBlock => ctaTxt.prepend(textBlock));
+}
+
+changeHeading();
+
+let ctaBttn = document.querySelector('.cta-text button');
+ctaBttn.textContent = siteContent["cta"]["button"];
+
+ctaBttn.addEventListener("click", function(){
+  let ctaChildrenCount = ctaTxt.childElementCount;
+  for(let i = 0; i < ctaChildrenCount - 1; i++){
+    ctaTxt.removeChild(ctaTxt.firstChild);
+  }
+  siteContent["cta"]["h1"] = "I have updated the header with a longer header";
+  changeHeading();
+});
+
+// let ctaH1 = document.querySelector('.cta-text h1');
+// ctaH1.textContent = siteContent["cta"]["h1"];
+
+let ctaImg = document.querySelector('#cta-img');
+ctaImg.src = siteContent["cta"]["img-src"];
+
+let main = document.querySelector('.main-content');
+
+
+let mainContentText = Object.values(siteContent["main-content"]);
+let mainSection = document.querySelectorAll('.text-content');
+
+mainContentText.splice(4, 1);
+
+// for(let i = 0; i < mainSection.length; i++){
+//   for(let j = 0; j < mainSection[i].childElementCount; j++){
+//     mainSection[i].children[j].textContent = mainContentText.shift();
+//   }
+// }
+
+mainSection.forEach(elem =>{
+  let textContentChildren = Array.from(elem.children);
+  textContentChildren.forEach(child => child.textContent = mainContentText.shift());
+});
+
+let midImg = document.querySelector('.middle-img');
+midImg.src = siteContent["main-content"]["middle-img-src"];
+
+let contactValues = Object.values(siteContent["contact"]);
+let contactSection = document.querySelector(".contact");
+let contactChildren = Array.from(contactSection.children);
+
+// for(let i = 0; i < contactSection.childElementCount; i++){
+//   contactSection.children[i].textContent = contactValues[i];
+// }
+
+contactChildren.forEach((elem, index) => elem.textContent = contactValues[index]);
+
+let footer = document.querySelector('footer p');
+
+footer.textContent = siteContent["footer"]["copyright"];
